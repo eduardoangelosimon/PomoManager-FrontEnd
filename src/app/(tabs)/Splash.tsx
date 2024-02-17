@@ -29,6 +29,7 @@ export function Splash({ onComplete }: Props) {
       style={StyleSheet.absoluteFill}
       resizeMode={ResizeMode.COVER}
       isLooping={false}
+      source={require("../../../assets/images/splash.mp4")}
       onPlaybackStatusUpdate={onPlaybackStatusUpdate}
       shouldPlay={true}
     />
