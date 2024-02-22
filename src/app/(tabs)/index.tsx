@@ -41,10 +41,10 @@ export default function Home() {
         }}
         style={styles.calendar}
       />
+      <View>
+        <Text style={styles.nextTasksTitle}>Próximas tarefas</Text>
+      </View>
       <ScrollView>
-        <View style={styles.nextTasksTitle}>
-          <Text>Próximas tarefas</Text>
-        </View>
         <TaskCard />
         <TaskCard />
         <TaskCard />
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: 18,
   },
   headerHello: {
     fontSize: 28,
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   calendar: {
-    marginVertical: 50,
+    marginVertical: 38,
     borderRadius: 10,
     shadowColor: Colors.black,
     shadowOffset: {
@@ -97,5 +98,6 @@ const styles = StyleSheet.create({
     color: Colors.salmon500,
     fontSize: 20,
     fontWeight: "bold",
+    marginBottom: 14,
   },
 });

@@ -1,22 +1,38 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 export function TaskCard() {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.salmonBorder} />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>Fazer relatório do TCC</Text>
-        <Text style={styles.description}>Escrever o relatório e assinar o documento</Text>
-        <View style={styles.dateRow}>
-          <View style={styles.row}>
-            <Image source={require("../assets/clock.png")} />
-            <Text>10:00 - 11:30</Text>
+      <View style={styles.rowContainer}>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>Fazer relatório do TCC</Text>
+          <Text style={styles.description}>Escrever o relatório e assinar o documento</Text>
+          <View style={styles.dateRow}>
+            <View style={styles.row}>
+              <Image source={require("../assets/clock.png")} />
+              <Text>10:00 - 11:30</Text>
+            </View>
+            <View style={styles.row}>
+              <Image source={require("../assets/calendar.png")} />
+              <Text>Hoje</Text>
+            </View>
           </View>
-          <View style={styles.row}>
-            <Image source={require("../assets/calendar.png")} />
-            <Text>Hoje</Text>
-          </View>
+        </View>
+        <View>
+          <BouncyCheckbox
+            innerIconStyle={{
+              borderColor: Colors.salmon500,
+              borderRadius: 4,
+              borderWidth: 2,
+            }}
+            iconStyle={{
+              borderRadius: 4,
+            }}
+            fillColor={Colors.salmon500}
+          />
         </View>
       </View>
     </TouchableOpacity>
@@ -27,8 +43,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     height: 80,
-    gap: 10,
-    marginVertical: 20,
+    marginVertical: 12,
     backgroundColor: "#fff",
     borderRadius: 8,
     shadowColor: "#000",
@@ -43,6 +58,7 @@ const styles = StyleSheet.create({
   },
 
   textContainer: {
+    marginLeft: 12,
     alignSelf: "center",
     height: "80%",
     justifyContent: "space-between",
@@ -75,5 +91,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 20,
+  },
+  rowContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    width: "98%",
+    justifyContent: "space-between",
   },
 });

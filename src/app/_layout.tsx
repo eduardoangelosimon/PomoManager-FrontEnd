@@ -1,25 +1,20 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import TabOneScreen from "./(tabs)";
 import { Splash } from "./(tabs)/Splash";
 import Home from "./(tabs)";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { TaskList } from "./(tabs)/TaskList";
+import { Ionicons } from "@expo/vector-icons";
+import Colors from "../constants/Colors";
+import NewTaskModal from "../components/NewTaskModal";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
-};
+export const unstable_settings = { initialRouteName: "(tabs)" };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -29,7 +24,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -47,6 +41,55 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const Tab = createBottomTabNavigator();
+
 function RootLayoutNav() {
-  return <Home />;
+  return (
+    <NavigationContainer independent={true}>
+      <Tab.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          tabBarStyle: {
+            marginTop: 0,
+            paddingTop: 0,
+          },
+          tabBarActiveTintColor: Colors.salmon500,
+          tabBarInactiveTintColor: Colors.gray500,
+        }}
+      >
+        <Tab.Screen
+          options={{
+            headerShown: false,
+            tabBarLabel: "Nova Tarefa",
+            tabBarLabelPosition: "beside-icon",
+            tabBarIcon: () => <Ionicons name="add-circle-outline" size={20} />,
+          }}
+          name="TaskList"
+          component={NewTaskModal}
+        />
+        <Tab.Screen
+          options={{
+            headerShown: false,
+            tabBarShowLabel: true,
+            tabBarLabelPosition: "beside-icon",
+
+            tabBarIcon: () => <Ionicons name="home" size={20} />,
+            tabBarLabel: "",
+          }}
+          name="Home"
+          component={Home}
+        />
+        <Tab.Screen
+          options={{
+            headerShown: false,
+            tabBarLabel: "Minhas tarefas",
+            tabBarLabelPosition: "beside-icon",
+            tabBarIcon: () => <Ionicons name="list" size={20} />,
+          }}
+          name="NewTaskModal"
+          component={TaskList}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
 }
