@@ -1,36 +1,39 @@
 import React from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const CustomModal = () => {
+const NewTaskModal = () => {
   return (
-    <Modal animationType="slide" transparent={true} visible={true} onRequestClose={() => {}}>
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <TouchableOpacity onPress={() => {}} style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-          <View style={styles.modalBody}>
-            <Text>Teste</Text>
+    <Modal animationType="slide" transparent={true} visible={false} onRequestClose={() => {}}>
+      <TouchableOpacity activeOpacity={1} onPress={() => {}} style={styles.modalOverlay}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <TouchableOpacity onPress={() => {}} style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+            <View style={styles.modalBody}>
+              <Text>Teste</Text>
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  modalContainer: {
+  modalOverlay: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "flex-end",
+  },
+  modalContainer: {
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   modalContent: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
     padding: 20,
-    minWidth: 300,
-    maxWidth: "80%",
+    paddingBottom: "100%", // Adjust this value to increase or decrease space on top
   },
   closeButton: {
     alignSelf: "flex-end",
@@ -44,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomModal;
+export default NewTaskModal;

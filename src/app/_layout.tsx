@@ -8,8 +8,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { TaskList } from "./(tabs)/TaskList";
 import { Ionicons } from "@expo/vector-icons";
-import Colors from "../constants/Colors";
 import NewTaskModal from "../components/NewTaskModal";
+import Colors from "../constants/Colors";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -47,22 +47,34 @@ function RootLayoutNav() {
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
+        screenOptions={({ route }) => ({
           tabBarStyle: {
             marginTop: 0,
             paddingTop: 0,
           },
           tabBarActiveTintColor: Colors.salmon500,
-          tabBarInactiveTintColor: Colors.gray500,
-        }}
+          tabBarInactiveTintColor: Colors.gray100,
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === "TaskList") {
+              iconName = "add-circle-outline";
+            } else if (route.name === "Home") {
+              iconName = "home";
+            } else if (route.name === "NewTaskModal") {
+              iconName = "list";
+            }
+
+            return <Ionicons name={iconName} size={size} color={focused ? color : color} />;
+          },
+        })}
+        initialRouteName="Home"
       >
         <Tab.Screen
           options={{
             headerShown: false,
             tabBarLabel: "Nova Tarefa",
             tabBarLabelPosition: "beside-icon",
-            tabBarIcon: () => <Ionicons name="add-circle-outline" size={20} />,
           }}
           name="TaskList"
           component={NewTaskModal}
@@ -73,7 +85,6 @@ function RootLayoutNav() {
             tabBarShowLabel: true,
             tabBarLabelPosition: "beside-icon",
 
-            tabBarIcon: () => <Ionicons name="home" size={20} />,
             tabBarLabel: "",
           }}
           name="Home"
@@ -84,7 +95,6 @@ function RootLayoutNav() {
             headerShown: false,
             tabBarLabel: "Minhas tarefas",
             tabBarLabelPosition: "beside-icon",
-            tabBarIcon: () => <Ionicons name="list" size={20} />,
           }}
           name="NewTaskModal"
           component={TaskList}
