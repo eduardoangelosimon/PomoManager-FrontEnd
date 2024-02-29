@@ -1,6 +1,4 @@
-import { StyleSheet, View, Text, Image, ScrollView, FlatList } from "react-native";
-import { Splash } from "./Splash";
-import { useState } from "react";
+import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "@/src/constants/Colors";
 import { Calendar } from "react-native-calendars";
@@ -9,47 +7,43 @@ import { TaskCard } from "@/src/components/TaskCard";
 export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View>
-          <Text style={styles.headerHello}>Olá,</Text>
-          <Text style={styles.headerUserName}>Eduardo!</Text>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.taskContainer}>
+        <View style={styles.headerContainer}>
+          <View>
+            <Text style={styles.headerHello}>Olá,</Text>
+            <Text style={styles.headerUserName}>Eduardo!</Text>
+          </View>
+          <Image style={{ height: 65, width: 65 }} source={require("../../assets/user-picture.png")} />
         </View>
-        <Image style={{ height: 65, width: 65 }} source={require("../../assets/user-picture.png")} />
-      </View>
-      <Calendar
-        theme={{
-          textSectionTitleColor: Colors.black,
-          textSectionTitleDisabledColor: "#d9e1e8",
-          selectedDayBackgroundColor: "#B73232",
-          selectedDayTextColor: "#ffffff",
-          todayTextColor: "#ffffff",
-          todayBackgroundColor: "#B73232",
-          dayTextColor: "#2d4150",
-          textDisabledColor: "#c9c9c9",
-          dotColor: "#fffff",
-          selectedDotColor: "#ffffff",
-          arrowColor: Colors.black,
-          disabledArrowColor: "#c9c9c9",
-          monthTextColor: "#828282",
-          indicatorColor: "#828282",
-          textDayFontWeight: "500",
-          textMonthFontWeight: "bold",
-          textDayHeaderFontWeight: "500",
-          textDayFontSize: 16,
-          textMonthFontSize: 16,
-          textDayHeaderFontSize: 16,
-        }}
-        style={styles.calendar}
-      />
-      <View>
-        <Text style={styles.nextTasksTitle}>Próximas tarefas</Text>
-      </View>
-      <ScrollView>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
+        <Calendar
+          theme={{
+            textSectionTitleColor: Colors.black,
+            textSectionTitleDisabledColor: "#d9e1e8",
+            selectedDayBackgroundColor: "#B73232",
+            selectedDayTextColor: "#ffffff",
+            todayTextColor: "#ffffff",
+            todayBackgroundColor: "#B73232",
+            dayTextColor: "#2d4150",
+            textDisabledColor: "#c9c9c9",
+            dotColor: "#fffff",
+            selectedDotColor: "#ffffff",
+            arrowColor: Colors.black,
+            disabledArrowColor: "#c9c9c9",
+            monthTextColor: "#828282",
+            indicatorColor: "#828282",
+            textDayFontWeight: "500",
+            textMonthFontWeight: "bold",
+            textDayHeaderFontWeight: "500",
+            textDayFontSize: 16,
+            textMonthFontSize: 16,
+            textDayHeaderFontSize: 16,
+          }}
+          style={styles.calendar}
+        />
+        <View>
+          <Text style={styles.nextTasksTitle}>Próximas tarefas</Text>
+        </View>
+
         <TaskCard />
         <TaskCard />
         <TaskCard />
@@ -68,7 +62,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   headerContainer: {
-    width: "100%",
+    alignSelf: "center",
+    width: "90%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -93,11 +88,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.12,
     shadowRadius: 2.22,
+    width: "90%",
+    alignSelf: "center",
   },
   nextTasksTitle: {
     color: Colors.salmon500,
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 14,
+    marginLeft: "5%",
+  },
+  taskContainer: {
+    alignSelf: "center",
+    width: "110%",
   },
 });

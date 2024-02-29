@@ -9,7 +9,10 @@ export function TaskCard() {
       <View style={styles.rowContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>Fazer relatório do TCC</Text>
-          <Text style={styles.description}>Escrever o relatório e assinar o documento</Text>
+          <Text numberOfLines={1} ellipsizeMode="tail" style={styles.description}>
+            Escrever o relatório e assinar o documento asdhashdjahsdjagdsjhaghgsdaghsjdgahhjsd gahjsgdajhgsdjhas
+            gdjhasgdjhaghjg
+          </Text>
           <View style={styles.dateRow}>
             <View style={styles.row}>
               <Image source={require("../assets/clock.png")} />
@@ -42,6 +45,8 @@ export function TaskCard() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    alignSelf: "center",
+    width: "92%",
     height: 80,
     marginVertical: 12,
     backgroundColor: "#fff",
@@ -79,6 +84,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 12,
     color: Colors.gray500,
+    maxWidth: "88%",
   },
 
   row: {
