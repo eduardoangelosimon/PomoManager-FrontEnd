@@ -10,6 +10,7 @@ import { TaskList } from "./(tabs)/TaskList";
 import { Ionicons } from "@expo/vector-icons";
 import NewTaskModal from "../components/NewTaskModal";
 import Colors from "../constants/Colors";
+import { TaskDetails } from "./(tabs)/TaskDetails";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -51,7 +52,10 @@ function RootLayoutNav() {
           tabBarStyle: {
             marginTop: 0,
             paddingTop: 0,
+            width: "85%",
+            alignSelf: "center",
           },
+          tabBarVisible: route.name !== "TaskDetails", // Hide the tab for the SecondScreen
           tabBarActiveTintColor: Colors.salmon500,
           tabBarInactiveTintColor: Colors.gray100,
           tabBarIcon: ({ focused, color, size }) => {
@@ -98,6 +102,16 @@ function RootLayoutNav() {
           }}
           name="NewTaskModal"
           component={TaskList}
+        />
+        <Tab.Screen
+          options={{
+            tabBarButton: () => null,
+            headerShown: false,
+            tabBarLabel: "Nova Tarefa",
+            tabBarLabelPosition: "beside-icon",
+          }}
+          name="TaskDetails"
+          component={TaskDetails}
         />
       </Tab.Navigator>
     </NavigationContainer>

@@ -1,8 +1,8 @@
 import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Colors from "@/src/constants/Colors";
+import Colors from "@/constants/Colors";
 import { Calendar } from "react-native-calendars";
-import { TaskCard } from "@/src/components/TaskCard";
+import { TaskCard } from "@/components/TaskCard";
 
 export default function Home() {
   return (

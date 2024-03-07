@@ -1,5 +1,5 @@
-import { TaskCard } from "@/src/components/TaskCard";
-import Colors from "@/src/constants/Colors";
+import { TaskCard } from "@/components/TaskCard";
+import Colors from "@/constants/Colors";
 import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignSelf: "center",
     marginTop: 18,
+    paddingBottom: 10,
   },
   headerHello: {
     fontSize: 28,

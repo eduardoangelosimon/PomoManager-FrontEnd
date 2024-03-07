@@ -1,10 +1,14 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
 
 export function TaskCard() {
+  const { navigate } = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigate("TaskDetails")}>
       <View style={styles.salmonBorder} />
       <View style={styles.rowContainer}>
         <View style={styles.textContainer}>
