@@ -7,4 +7,6 @@ export default {
 
   salmon50: "#FEEBEB",
   salmon500: "#F97373",
+
+  red: "#B73232",
 };
