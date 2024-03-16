@@ -52,7 +52,8 @@ function RootLayoutNav() {
           tabBarStyle: {
             marginTop: 0,
             paddingTop: 0,
-            width: "85%",
+            width: "100%",
+            paddingHorizontal: "7.5%",
             alignSelf: "center",
           },
           tabBarVisible: route.name !== "TaskDetails", // Hide the tab for the SecondScreen
